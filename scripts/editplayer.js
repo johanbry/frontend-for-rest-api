@@ -78,7 +78,8 @@ function setImage(player) {
   const image = document.getElementById("player-image");
   image.setAttribute(
     "src",
-    "https://rest-api-and-client.vercel.app/" + (player.image || "noimage.png")
+    "https://rest-api-and-client.herokuapp.com/" +
+      (player.image || "noimage.png")
   );
   image.setAttribute("alt", `${player.firstName} ${player.lastName}`);
 }

@@ -1,4 +1,4 @@
-const apiUrl = "https://rest-api-and-client.vercel.app/players/";
+const apiUrl = "https://rest-api-and-client.herokuapp.com/players/";
 
 /**
  * Gets players from API.

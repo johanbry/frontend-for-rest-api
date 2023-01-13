@@ -47,7 +47,7 @@ function renderPlayers(players) {
     const img = document.createElement("img");
     img.setAttribute(
       "src",
-      "https://rest-api-and-client.vercel.app/" +
+      "https://rest-api-and-client.herokuapp.com/" +
         (player.image || "noimage.png")
     );
     img.setAttribute("alt", player.firstName + " " + player.lastName);
