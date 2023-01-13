@@ -1,23 +1,25 @@
-const apiUrl = "http://localhost:3000/players/";
+const apiUrl = "https://rest-api-and-client.vercel.app/players/";
 
 /**
  * Gets players from API.
  * @returns {array} Returns array with player objects (Promise).
  */
 
- export async function getPlayers() {
-    try {
-        const response = await fetch(apiUrl);
+export async function getPlayers() {
+  try {
+    const response = await fetch(apiUrl);
 
-        if (!response.ok) {
-            const error = new Error("Could not get data. Status code: " + response.status);
-            throw error;
-        }
-        const players = await response.json();
-        return players;
-    } catch (error) {
-        throw error;
+    if (!response.ok) {
+      const error = new Error(
+        "Could not get data. Status code: " + response.status
+      );
+      throw error;
     }
+    const players = await response.json();
+    return players;
+  } catch (error) {
+    throw error;
+  }
 }
 
 /**
@@ -27,38 +29,42 @@ const apiUrl = "http://localhost:3000/players/";
  */
 
 export async function getPlayer(id) {
-    try {
-        const response = await fetch(apiUrl + id);
+  try {
+    const response = await fetch(apiUrl + id);
 
-        if (!response.ok) {
-            const error = new Error("Could not get data. Status code: " + response.status);
-            throw error;
-        }
-        const player = await response.json();
-        return player; 
-    } catch (error) {
-        throw error;
+    if (!response.ok) {
+      const error = new Error(
+        "Could not get data. Status code: " + response.status
+      );
+      throw error;
     }
+    const player = await response.json();
+    return player;
+  } catch (error) {
+    throw error;
+  }
 }
 
 /**
  * Deletes a player with API.
- * @param {string} id 
+ * @param {string} id
  * @returns {object} Response object (Promise)
  */
 
 export async function deletePlayer(id) {
-    try {
-       const response = await fetch(apiUrl+ id, {method: "DELETE"});
+  try {
+    const response = await fetch(apiUrl + id, { method: "DELETE" });
 
-       if (!response.ok) {
-           const error = new Error("Could not delete. Status code: " + response.status);
-           throw error;
-       }
-       return response;
-   } catch(error) {
-       throw error;
-   } 
+    if (!response.ok) {
+      const error = new Error(
+        "Could not delete. Status code: " + response.status
+      );
+      throw error;
+    }
+    return response;
+  } catch (error) {
+    throw error;
+  }
 }
 
 /**
@@ -69,26 +75,27 @@ export async function deletePlayer(id) {
  */
 
 export async function createPlayer(player, image) {
-    try {
-        const formData = new FormData();
-        formData.append("data", JSON.stringify(player));
-        if (image)
-            formData.append("image", image);
+  try {
+    const formData = new FormData();
+    formData.append("data", JSON.stringify(player));
+    if (image) formData.append("image", image);
 
-        const response = await fetch(apiUrl, {
-            method: 'POST',
-            body: formData,
-            headers: { }
-        });
+    const response = await fetch(apiUrl, {
+      method: "POST",
+      body: formData,
+      headers: {},
+    });
 
-        if (!response.ok) {
-            const error = new Error("Could not create player. Status code: " + response.status);
-            throw error;
-        }
-        return player = await response.json(); 
-    } catch (error) {
-        throw error;
+    if (!response.ok) {
+      const error = new Error(
+        "Could not create player. Status code: " + response.status
+      );
+      throw error;
     }
+    return (player = await response.json());
+  } catch (error) {
+    throw error;
+  }
 }
 
 /**
@@ -98,26 +105,27 @@ export async function createPlayer(player, image) {
  * @returns {object} Player object updated
  */
 
- export async function updatePlayer(player, image) {
-    try {
-        const formData = new FormData();
-        formData.append("data", JSON.stringify(player));
-        
-        if (image)
-            formData.append("image", image);
+export async function updatePlayer(player, image) {
+  try {
+    const formData = new FormData();
+    formData.append("data", JSON.stringify(player));
 
-        const response = await fetch(apiUrl + player.id, {
-            method: 'PUT',
-            body: formData,
-            headers: { }
-        });
+    if (image) formData.append("image", image);
 
-        if (!response.ok) {
-            const error = new Error("Could not update player. Status code: " + response.status);
-            throw error;
-        }
-        return player = await response.json(); 
-    } catch (error) {
-        throw error;
+    const response = await fetch(apiUrl + player.id, {
+      method: "PUT",
+      body: formData,
+      headers: {},
+    });
+
+    if (!response.ok) {
+      const error = new Error(
+        "Could not update player. Status code: " + response.status
+      );
+      throw error;
     }
+    return (player = await response.json());
+  } catch (error) {
+    throw error;
+  }
 }
